@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-exports.postData = (req, res) => {
+exports.getData = (req, res) => {
     const mysql = require('mysql');
   
     const con = mysql.createConnection({
@@ -23,9 +23,9 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select M1.id, M1.Registrationdate, M1.name, M1.money, M1.type, T1.id,T1.category from m_record M1 left join t_category T1 ON M1.id=T1.id';
-      // console.log(sql);
-      con.query(sql, (err, result, fields) => {
+      const sql = 'insert into m_record (id,Registrationdate,name,money,type,category) values(?,?,?,?,?,?)';
+      console.log(req.body);
+      con.query(sql,[req.body.id, req.body.Registrationdate, req.body.name, req.body.money, req.body.type, req.body.category], (err, result, fields) => {
         try {
           var err = () => {throw err}
           console.log('Connected!');

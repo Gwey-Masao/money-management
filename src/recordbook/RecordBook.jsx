@@ -54,7 +54,7 @@ const StyledTableCell = withStyles((theme) => ({
       : (a, b) => -descendingComparator(a, b, orderBy);
   }
   
-  function stableSort(array, comparator) {
+  const stableSort = (array, comparator) => {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
       const order = comparator(a[0], b[0]);
@@ -74,7 +74,7 @@ const StyledTableCell = withStyles((theme) => ({
     // { label: '詳細' },
   ];
 
-  function EnhancedTableHead(props) {
+  const EnhancedTableHead = (props) => {
     const { classes, order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
       onRequestSort(event, property);
@@ -167,8 +167,8 @@ const RecordBook = () => {
       }
   }
 
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';

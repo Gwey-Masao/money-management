@@ -23,9 +23,9 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select M1.id, M1.Registrationdate, M1.name, M1.money, M1.type, T1.id,T1.category from m_record M1 left join t_category T1 ON M1.id=T1.id';
-      // console.log(sql);
-      con.query(sql, (err, result, fields) => {
+      const sql = 'SELECT * FROM m_record WHERE id =' +req
+      console.log(req.body);
+      con.query(sql,(err, result, fields) => {
         try {
           var err = () => {throw err}
           console.log('Connected!');

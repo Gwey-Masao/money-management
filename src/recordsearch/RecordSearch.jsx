@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paper, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, DialogTitle } from '@material-ui/core';
@@ -8,6 +8,8 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
+import ListData from './ListData';
+import axios from 'axios';
 import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         '& > *': {
-          margin: theme.spacing(0),
-          width: '100%',
+            margin: theme.spacing(0),
+            width: '100%',
         },
-      },
+    },
 
     type: {
         float: 'left',
@@ -56,19 +58,19 @@ const useStyles = makeStyles((theme) => ({
         width: '50%',
         marginRight: 'auto',
         marginLeft: 'auto',
-      },
-      button: {
-        left: theme.spacing(-35),
+    },
+    button: {
+        left: theme.spacing(5),
         float: 'left',
         marginBottom: 20,
         // top: theme.spacing(-46),
-      },
-      button_2: {
-        left: theme.spacing(27),
+    },
+    button_2: {
+        left: theme.spacing(7),
         float: 'left',
         marginBottom: 20,
         // top: theme.spacing(-46),
-      },
+    },
 
 }));
 
@@ -85,9 +87,75 @@ const RecordSearch = () => {
         setCategory(event.target.value);
     };
 
-    const Reset = () =>{
+    const Reset = () => {
         setType('');
         setCategory('');
+    }
+
+    const [getPosts, setGetPosts] = useState([]);
+    useEffect(() => {
+        const newValue =
+            { type: type, category: category }
+        if (getPosts.length === 0) {
+            axios
+                .post('/api/recordsearch', newValue)
+                .then(response => {
+                    setGetPosts(response.data);
+                    console.log([response.data]);
+                })
+                .catch(() => {
+                    console.log('connected error');
+                })
+        }
+    }, []);
+
+    const [getType, setGetType] = useState([]);
+    useEffect(() => getTypeData(), []);
+    const getTypeData = () => {
+        if (getType.length === 0) {
+            axios
+                .post('/api/recordsearch001')
+                .then(response => {
+                    setGetType(response.data);
+                    console.log([response.data]);
+                })
+                .catch(() => {
+                    console.log('connected error');
+                })
+        }
+    }
+
+    const [getCategory, setGetCategory] = useState([]);
+    useEffect(() => getCategoryData(), []);
+    const getCategoryData = () => {
+        if (getCategory.length === 0) {
+            axios
+                .post('/api/recordsearch002')
+                .then(response => {
+                    setGetCategory(response.data);
+                    console.log([response.data]);
+                })
+                .catch(() => {
+                    console.log('connected error');
+                })
+        }
+    }
+
+    const Search = () => {
+        const search = getPosts.filter((data) => {
+            return ((data.type === type) ||
+                data.category === category);
+        })
+
+        const cleanList = search.filter((data_x, index, self) => {
+            return (self.findIndex((data_y) => {
+                return (data_x.id === data_y.id)
+            }) === index);
+        });
+
+        console.log(cleanList);
+        ListData.setStaffData(cleanList);
+        window.location.href = "";
     }
 
     return (
@@ -114,12 +182,12 @@ const RecordSearch = () => {
                             onChange={handleChange1}
                             label="種類"
                         >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value=""></MenuItem>
+                            {getType.map((data) => (
+                                <MenuItem key={data.type} value={data.type} >
+                                    {data.type}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                 </div>
@@ -138,12 +206,12 @@ const RecordSearch = () => {
                             onChange={handleChange2}
                             label="区分"
                         >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value=""></MenuItem>
+                            {getCategory.map((data) => (
+                                <MenuItem key={data.category} value={data.category} >
+                                    {data.category}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                 </div>
@@ -166,12 +234,12 @@ const RecordSearch = () => {
                     </form>
                 </div>
                 <br className={classes.end} />
-        <div className={classes.blockButton}>
-          {/* リセットボタン */}
-          <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
-          {/* 検索ボタン */}
-          {/* <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button> */}
-        </div>
+                <div className={classes.blockButton}>
+                    {/* リセットボタン */}
+                    <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
+                    {/* 検索ボタン */}
+                    <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
+                </div>
             </Paper>
         </div>
     )

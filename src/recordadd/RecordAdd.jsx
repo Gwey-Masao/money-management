@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
         left: theme.spacing(10),
         float: 'left',
         marginBottom: 20,
-        // top: theme.spacing(-46),
     },
 
 }));

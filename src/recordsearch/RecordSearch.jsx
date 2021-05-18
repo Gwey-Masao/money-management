@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import ListData from './ListData';
 import axios from 'axios';
+import './RecordSearch.css';
 import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
@@ -58,18 +59,17 @@ const useStyles = makeStyles((theme) => ({
         width: '50%',
         marginRight: 'auto',
         marginLeft: 'auto',
-    },
+      },
     button: {
-        left: theme.spacing(5),
+        left: theme.spacing(8),
         float: 'left',
         marginBottom: 20,
         // top: theme.spacing(-46),
     },
     button_2: {
-        left: theme.spacing(7),
+        left: theme.spacing(10),
         float: 'left',
         marginBottom: 20,
-        // top: theme.spacing(-46),
     },
 
 }));
@@ -234,12 +234,15 @@ const RecordSearch = () => {
                     </form>
                 </div>
                 <br className={classes.end} />
+
+                
                 <div className={classes.blockButton}>
                     {/* リセットボタン */}
                     <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
                     {/* 検索ボタン */}
                     <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
                 </div>
+
             </Paper>
         </div>
     )

@@ -12,7 +12,6 @@ exports.postData = (req, res) => {
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'money-management'
     });
   
     con.connect((err) => {
@@ -23,7 +22,7 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select M1.category from m_record M1';
+      const sql = 'select M1.category from money_management.m_record M1';
       // console.log(sql);
       con.query(sql, (err, result, fields) => {
         try {

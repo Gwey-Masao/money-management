@@ -12,7 +12,6 @@ exports.getData = (req, res) => {
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'money-management'
     });
   
     con.connect((err) => {
@@ -23,7 +22,7 @@ exports.getData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'insert into m_record (id,Registrationdate,name,money,type,category) values(?,?,?,?,?,?)';
+      const sql = 'insert into money_management.m_record (id,Registrationdate,name,money,type,category) values(?,?,?,?,?,?)';
       console.log(req.body);
       con.query(sql,[req.body.id, req.body.Registrationdate, req.body.name, req.body.money, req.body.type, req.body.category], (err, result, fields) => {
         try {

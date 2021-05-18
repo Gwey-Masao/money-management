@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 4000;
 
-app.post('/api/recordbook',(req,res) => {
-    recordbook.postData(req,res);
+app.get('/api/recordbook:condition',(req,res) => {
+    recordbook.getData(req.params.condition,res);
 });
 
 app.post('/api/recordsearch',(req,res) => {

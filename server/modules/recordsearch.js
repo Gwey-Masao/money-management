@@ -12,7 +12,6 @@ exports.postData = (req, res) => {
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'money-management'
     });
   
     con.connect((err) => {
@@ -23,7 +22,7 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select M1.id, M1.Registrationdate, M1.name, M1.money, M1.type, T1.id,T1.category from m_record M1 left join t_category T1 ON M1.id=T1.id';
+      const sql = 'select M1.id, M1.Registrationdate, M1.name, M1.money, M1.type, T1.id,T1.category from money_management.m_record M1 left join money_management.t_category T1 ON M1.id=T1.id';
       // console.log(sql);
       con.query(sql, (err, result, fields) => {
         try {

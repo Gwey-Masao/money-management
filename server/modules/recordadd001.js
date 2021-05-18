@@ -23,7 +23,7 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'SELECT * FROM m_record WHERE id =' +req
+      const sql = 'SELECT * FROM money_management.m_record WHERE id =' +req
       console.log(req.body);
       con.query(sql,(err, result, fields) => {
         try {

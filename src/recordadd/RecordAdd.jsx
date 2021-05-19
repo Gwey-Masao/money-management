@@ -12,7 +12,7 @@ import axios from 'axios';
 import './RecordAdd.css';
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
-
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -221,6 +221,7 @@ const RecordAdd = () => {
                     <div style={{ display: 'flex' }}>
                         {/* <SearchIcon style={{ fontSize: '25px' }} />
                             <PeopleAltIcon style={{ fontSize: '40px', }} /> */}
+                        <AddIcon style={{ fontSize: '40px', }}/>
                         <Typography style={{ fontSize: '30px' }}>詳細登録</Typography>
                     </div>
                 </DialogTitle>

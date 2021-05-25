@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const mysql = require('mysql');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-exports.postData = (req, res) => {
-    const mysql = require('mysql');
+exports.getData = (req, res) => {
   
     const con = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
+      database:'money_management'
     });
   
     con.connect((err) => {

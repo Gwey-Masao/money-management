@@ -14,32 +14,32 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 4000;
 
-app.get('/api/recordbook:condition',(req,res) => {
-    recordbook.getData(req.params.condition,res);
+app.get('/api/recordbook',(req,res) => {
+    recordbook.getData(req,res);
 });
 
-app.post('/api/recordsearch',(req,res) => {
-    recordsearch.postData(req,res);
+app.get('/api/recordsearch',(req,res) => {
+    recordsearch.getData(req,res);
 });
 
-app.post('/api/recordsearch001',(req,res) => {
-    recordsearch001.postData(req,res);
+app.get('/api/recordsearch001',(req,res) => {
+    recordsearch001.getData(req,res);
 });
 
-app.post('/api/recordsearch002',(req,res) => {
-    recordsearch002.postData(req,res);
+app.get('/api/recordsearch002',(req,res) => {
+    recordsearch002.getData(req,res);
 });
 
 app.get('/api/recordadd',(req,res)=>{
     recordadd.getData(req,res);
 });
 
-app.post('/api/recordadd001',(req,res)=>{
-    recordadd001.postData(req,res);
+app.get('/api/recordadd001',(req,res)=>{
+    recordadd001.getData(req,res);
 });
 
-app.post('/api/recordadd002',(req,res)=>{
-    recordadd002.postData(req,res);
+app.get('/api/recordadd002',(req,res)=>{
+    recordadd002.getData(req,res);
 });
 
 app.listen(port);

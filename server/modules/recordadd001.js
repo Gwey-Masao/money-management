@@ -4,10 +4,9 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+const mysql = require('mysql');
 
-exports.postData = (req, res) => {
-    const mysql = require('mysql');
-  
+exports.getData = (req, res) => {
     const con = mysql.createConnection({
       host: 'localhost',
       user: 'root',

@@ -98,7 +98,7 @@ const RecordSearch = () => {
             { type: type, category: category }
         if (getPosts.length === 0) {
             axios
-                .post('/api/recordsearch', newValue)
+                .get('/api/recordsearch', newValue)
                 .then(response => {
                     setGetPosts(response.data);
                     console.log([response.data]);
@@ -114,7 +114,7 @@ const RecordSearch = () => {
     const getTypeData = () => {
         if (getType.length === 0) {
             axios
-                .post('/api/recordsearch001')
+                .get('/api/recordsearch001')
                 .then(response => {
                     setGetType(response.data);
                     console.log([response.data]);
@@ -130,7 +130,7 @@ const RecordSearch = () => {
     const getCategoryData = () => {
         if (getCategory.length === 0) {
             axios
-                .post('/api/recordsearch002')
+                .get('/api/recordsearch002')
                 .then(response => {
                     setGetCategory(response.data);
                     console.log([response.data]);

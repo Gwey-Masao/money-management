@@ -4,14 +4,14 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+const mysql = require('mysql');
 
 exports.getData = (req, res) => {
-    const mysql = require('mysql');
-  
     const con = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
+      database:'money_management'
     });
   
     con.connect((err) => {
@@ -22,7 +22,7 @@ exports.getData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select * from money_management.m_record';
+      const sql = 'select M1.id, M1.Registrationdate, M1.name, M1.money, M1.type, T1.category from money_management.m_record M1 left join money_management.t_category T1 ON M1.category=T1.category';
       // console.log(sql);
       con.query(sql, (err, result, fields) => {
         try {

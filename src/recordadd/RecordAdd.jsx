@@ -203,7 +203,7 @@ const RecordAdd = () => {
     const getCategoryData = () => {
         if (getCategory.length === 0) {
             axios
-                .post('/api/recordadd002')
+                .get('/api/recordadd002')
                 .then(response => {
                     setGetCategory(response.data);
                     console.log([response.data]);

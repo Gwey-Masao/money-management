@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const mysql = require('mysql');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-exports.postData = (req, res) => {
-    const mysql = require('mysql');
+exports.getData = (req, res) => {
   
     const con = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
+      database:'money_management'
     });
   
     con.connect((err) => {
@@ -22,7 +22,7 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select M1.category from money_management.m_record M1';
+      const sql = 'select * from money_management.t_category';
       // console.log(sql);
       con.query(sql, (err, result, fields) => {
         try {

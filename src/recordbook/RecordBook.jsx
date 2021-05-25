@@ -149,14 +149,14 @@ const StyledTableCell = withStyles((theme) => ({
 const RecordBook = () => {
   const classes = useStyles();
 
-  useEffect(()=> getRecord(),[]);
-
   const [posts,setPosts] = useState([]);
+
+  useEffect(()=> getRecord(),[]);
 
   const getRecord = () =>{
     if(posts.length === 0) {
       axios
-        .get('/api/recordbook/1')
+        .get('/api/recordbook')
         .then(response => {
           console.log([response.data]);
           setPosts(response.data);

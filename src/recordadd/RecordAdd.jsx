@@ -185,7 +185,7 @@ const RecordAdd = () => {
         } else {
 
             axios
-                .get('/api/recordadd', newValue)
+                .post('/api/recordadd', newValue)
                 .then(response => {
                     console.log(response.data);
                     window.alert("追加されました")

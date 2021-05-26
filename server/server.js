@@ -30,8 +30,8 @@ app.get('/api/recordsearch002',(req,res) => {
     recordsearch002.getData(req,res);
 });
 
-app.get('/api/recordadd',(req,res)=>{
-    recordadd.getData(req,res);
+app.post('/api/recordadd',(req,res)=>{
+    recordadd.postData(req,res);
 });
 
 app.get('/api/recordadd001',(req,res)=>{

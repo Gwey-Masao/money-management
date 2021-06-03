@@ -22,7 +22,7 @@ exports.getData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select M1.id, M1.Registrationdate, M1.name, M1.money, M1.type, T1.category from money_management.m_record M1 left join money_management.t_category T1 ON M1.category=T1.category';
+      const sql = 'select M1.id, M1.registrationdate, M1.name, M1.money, M1.type, T1.category from money_management.m_record M1 left join money_management.t_category T1 ON M1.category_id=T1.id';
       // console.log(sql);
       con.query(sql, (err, result, fields) => {
         try {

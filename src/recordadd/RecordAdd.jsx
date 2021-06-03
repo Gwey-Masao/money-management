@@ -177,7 +177,7 @@ const RecordAdd = () => {
     }
 
     const submit = () => {
-        const newValue = { id: number, Registrationdate: day, name: name, money: money, type: type, category: category };
+        const newValue = {id:number, registrationdate:day, name:name, money:money, type:type, category_id:category};
 
         if ((number.length === 0) || (day.length === 0) || (name.length === 0) ||
             (money.length === 0) || (type.length === 0) || (category.length === 0)) {
@@ -290,7 +290,7 @@ const RecordAdd = () => {
                             >
                                 <MenuItem value=""></MenuItem>
                                 {getCategory.map((data) => (
-                                    <MenuItem key={data.category} value={data.category} >
+                                    <MenuItem key={data.category_id} value={data.category_id} >
                                         {data.category}
                                     </MenuItem>
                                 ))}

@@ -92,15 +92,15 @@ const RecordSearch = () => {
         setCategory('');
     }
 
-    const [getPosts, setGetPosts] = useState([]);
+    const [data, setData] = useState([]);
     useEffect(() => {
         const newValue =
             { type: type, category: category }
-        if (getPosts.length === 0) {
+        if (data.length === 0) {
             axios
-                .get('/api/recordsearch', newValue)
+                .post('/api/recordsearch', newValue)
                 .then(response => {
-                    setGetPosts(response.data);
+                    setData(response.data);
                     console.log([response.data]);
                 })
                 .catch(() => {
@@ -114,7 +114,7 @@ const RecordSearch = () => {
     const getTypeData = () => {
         if (getType.length === 0) {
             axios
-                .get('/api/recordsearch001')
+                .post('/api/recordsearch001')
                 .then(response => {
                     setGetType(response.data);
                     console.log([response.data]);
@@ -130,7 +130,7 @@ const RecordSearch = () => {
     const getCategoryData = () => {
         if (getCategory.length === 0) {
             axios
-                .get('/api/recordsearch002')
+                .post('/api/recordsearch002')
                 .then(response => {
                     setGetCategory(response.data);
                     console.log([response.data]);
@@ -141,11 +141,18 @@ const RecordSearch = () => {
         }
     }
 
+    const clean = getType.filter((x,i,self) => {
+        return (self.findIndex((y) => {
+            return (x.type === y.type)
+        }) === i);
+    });
+    
+
     const Search = () => {
-        const search = getPosts.filter((data) => {
-            return ((data.type === type) ||
-                data.category === category);
-        })
+        const search = data.filter((data) => {
+            return (data.type === type) ||
+                    (data.category === category);
+        });
 
         const cleanList = search.filter((data_x, index, self) => {
             return (self.findIndex((data_y) => {
@@ -154,8 +161,8 @@ const RecordSearch = () => {
         });
 
         console.log(cleanList);
-        ListData.setStaffData(cleanList);
-        window.location.href = "";
+        ListData.setRecordData(cleanList);
+        window.location.href = "/record_result";
     }
 
     return (
@@ -183,8 +190,8 @@ const RecordSearch = () => {
                             label="種類"
                         >
                             <MenuItem value=""></MenuItem>
-                            {getType.map((data) => (
-                                <MenuItem key={data.type} value={data.type} >
+                            {clean.map((data) => (
+                                <MenuItem key={data.id} value={data.type} >
                                     {data.type}
                                 </MenuItem>
                             ))}
@@ -208,7 +215,7 @@ const RecordSearch = () => {
                         >
                             <MenuItem value=""></MenuItem>
                             {getCategory.map((data) => (
-                                <MenuItem key={data.category} value={data.category} >
+                                <MenuItem key={data.id} value={data.category} >
                                     {data.category}
                                 </MenuItem>
                             ))}
@@ -216,7 +223,7 @@ const RecordSearch = () => {
                     </FormControl>
                 </div>
 
-                <div>
+                {/* <div>
                     <Typography className={classes.type} variant="h5" component="h2">
                         日付
                     </Typography>
@@ -232,7 +239,7 @@ const RecordSearch = () => {
                             }}
                         />
                     </form>
-                </div>
+                </div> */}
                 <br className={classes.end} />
 
                 

@@ -22,9 +22,9 @@ exports.postData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'insert into money_management.m_record (id,Registrationdate,name,money,type,category) values(?,?,?,?,?,?)';
+      const sql = 'insert into money_management.m_record (id,registrationdate,name,money,type,category_id) values(?,?,?,?,?,?)';
       console.log(req.body);
-      con.query(sql,[req.body.id, req.body.Registrationdate, req.body.name, req.body.money, req.body.type, req.body.category], (err, result, fields) => {
+      con.query(sql,[req.body.id, req.body.registrationdate, req.body.name, req.body.money, req.body.type, req.body.category_id], (err, result, fields) => {
         try {
           var err = () => {throw err}
           console.log('Connected!');

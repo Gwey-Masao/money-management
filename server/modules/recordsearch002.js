@@ -5,7 +5,7 @@ const mysql = require('mysql');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-exports.getData = (req, res) => {
+exports.postData = (req, res) => {
   
     const con = mysql.createConnection({
       host: 'localhost',

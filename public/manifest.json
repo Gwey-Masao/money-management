@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Money-Management System",
+  "name": "Money-Management System is a React with Material-UI",
   "icons": [
     {
       "src": "favicon.ico",

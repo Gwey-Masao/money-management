@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, Switch } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -28,6 +28,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import RecordBook from '../recordbook/RecordBook'
 import RecordSearch from '../recordsearch/RecordSearch';
 import RecordAdd from '../recordadd/RecordAdd';
+import RecordBook_result from '../recordsearch/RecordBook_result';
 
 const drawerWidth = 240;
 
@@ -179,9 +180,12 @@ const PersistentDrawerLeft = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Route path="/record" component={RecordBook} />
-        <Route path="/search" component={RecordSearch} />
-        <Route path="/add" component={RecordAdd} />
+        <Switch>
+          <Route path="/record" component={RecordBook} />
+          <Route path="/search" component={RecordSearch} />
+          <Route path="/add" component={RecordAdd} />
+          <Route path="/record_result" component={RecordBook_result} />
+        </Switch>
       </main>
     </div>
   );

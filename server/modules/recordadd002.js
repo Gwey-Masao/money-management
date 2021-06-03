@@ -23,7 +23,7 @@ exports.getData = (req, res) => {
         console.log('err')
       }
       
-      const sql = 'select * from money_management.t_category';
+      const sql = 'select id as "category_id", category as "category" from t_category';
       console.log(req.body);
       con.query(sql,(err, result, fields) => {
         try {

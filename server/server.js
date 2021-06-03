@@ -18,16 +18,16 @@ app.get('/api/recordbook',(req,res) => {
     recordbook.getData(req,res);
 });
 
-app.get('/api/recordsearch',(req,res) => {
-    recordsearch.getData(req,res);
+app.post('/api/recordsearch',(req,res) => {
+    recordsearch.postData(req,res);
 });
 
-app.get('/api/recordsearch001',(req,res) => {
-    recordsearch001.getData(req,res);
+app.post('/api/recordsearch001',(req,res) => {
+    recordsearch001.postData(req,res);
 });
 
-app.get('/api/recordsearch002',(req,res) => {
-    recordsearch002.getData(req,res);
+app.post('/api/recordsearch002',(req,res) => {
+    recordsearch002.postData(req,res);
 });
 
 app.post('/api/recordadd',(req,res)=>{

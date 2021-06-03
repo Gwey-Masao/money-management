@@ -66,8 +66,8 @@ const StyledTableCell = withStyles((theme) => ({
   
   const headCells = [
     { id:'id', numeric: false, disablePadding: true, label: '番号' },
-    { id:'Registrationdate',numeric: true, disablePadding: false, label: '日付' },
-    { id:'name',numeric: true, disablePadding: false, label: '商品名' },
+    { id:'registrationdate',numeric: true, disablePadding: false, label: '日付' },
+    { id:'name',numeric: true, disablePadding: false, label: '内容' },
     { id:'money',numeric: true, disablePadding: false, label: '金額' },
     { id:'type',numeric: true, disablePadding: false, label: '種類' },
     { id:'category',numeric: true, disablePadding: false, label: '区分' },
@@ -207,7 +207,7 @@ const RecordBook = () => {
                   return (
                     <StyledTableRow　variant="outlined">
                       <TableCell align="center">{data.id}</TableCell>
-                      <TableCell align="center">{data.Registrationdate}</TableCell>
+                      <TableCell align="center">{data.registrationdate}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.money}</TableCell>
                       <TableCell align="center">{data.type}</TableCell>

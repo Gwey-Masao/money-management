@@ -156,7 +156,7 @@ const RecordBook = () => {
   const getRecord = () =>{
     if(posts.length === 0) {
       axios
-        .get('/api/recordbook')
+        .get('/api/recordbook/1')
         .then(response => {
           console.log([response.data]);
           setPosts(response.data);

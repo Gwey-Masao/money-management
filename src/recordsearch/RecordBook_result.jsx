@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography, DialogTitle } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
@@ -13,7 +13,8 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import '../recordbook/RecordBook.css';
-import ListData from '../recordsearch/ListData';
+import axios from 'axios';
+import ListData from './ListData';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -146,26 +147,26 @@ const StyledTableCell = withStyles((theme) => ({
     }
   }));
 
-const RecordBook = () => {
+  export default function RecordBook () {
   const classes = useStyles();
 
-  // const [posts,setPosts] = useState([]);
+  const [posts,setPosts] = useState([]);
 
-  // useEffect(()=> getRecord(),[]);
+  useEffect(()=> getRecord(),[]);
 
-  // const getRecord = () =>{
-  //   if(posts.length === 0) {
-  //     axios
-  //       .get('/api/recordbook')
-  //       .then(response => {
-  //         console.log([response.data]);
-  //         setPosts(response.data);
-  //       })
-  //       .catch(() => {
-  //         console.log('connected error');
-  //       })
-  //     }
-  // }
+  const getRecord = () =>{
+    if(posts.length === 0) {
+      axios
+        .get('/api/recordbook/1')
+        .then(response => {
+          console.log([response.data]);
+          setPosts(response.data);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+      }
+  }
 
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('calories');
@@ -199,19 +200,19 @@ const RecordBook = () => {
               order={order}
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
-              rowCount={ListData.getRecordData().length}
+              rowCount={posts.length}
             />
             <TableBody>
               {stableSort(ListData.getRecordData(), getComparator(order, orderBy))
-                .map((data) => {
+                .map((getdata) => {
                   return (
                     <StyledTableRow　variant="outlined">
-                      <TableCell align="center">{data.id}</TableCell>
-                      <TableCell align="center">{data.registrationdate}</TableCell>
-                      <TableCell align="center">{data.name}</TableCell>
-                      <TableCell align="center">{data.money}</TableCell>
-                      <TableCell align="center">{data.type}</TableCell>
-                      <TableCell align="center">{data.category}</TableCell>
+                      <TableCell align="center">{getdata.id}</TableCell>
+                      <TableCell align="center">{getdata.registrationdate}</TableCell>
+                      <TableCell align="center">{getdata.name}</TableCell>
+                      <TableCell align="center">{getdata.money}</TableCell>
+                      <TableCell align="center">{getdata.type}</TableCell>
+                      <TableCell align="center">{getdata.category}</TableCell>
                     </StyledTableRow>
                   );
                 })}</TableBody>
@@ -225,5 +226,3 @@ const RecordBook = () => {
     </div>
   );
 };
-
-export default RecordBook;

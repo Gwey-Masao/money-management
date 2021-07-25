@@ -1,21 +1,21 @@
 const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const recordbook = require('./modules/recordbook');
-const recordsearch = require('./modules/recordsearch');
-const recordsearch001 = require('./modules/recordsearch001');
-const recordsearch002 = require('./modules/recordsearch002');
-const recordadd = require('./modules/recordadd');
-const recordadd001 = require('./modules/recordadd001');
-const recordadd002 = require('./modules/recordadd002');
+const recordbook = require('./modules/recordbook.js');
+const recordsearch = require('./modules/recordsearch.js');
+const recordsearch001 = require('./modules/recordsearch001.js');
+const recordsearch002 = require('./modules/recordsearch002.js');
+const recordadd = require('./modules/recordadd.js');
+const recordadd001 = require('./modules/recordadd001.js');
+const recordadd002 = require('./modules/recordadd002.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 4000;
 
-app.get('/api/recordbook',(req,res) => {
-    recordbook.getData(req,res);
+app.get('/api/recordbook/:condition',(req,res) => {
+    recordbook.getData(req.params.condition,res);
 });
 
 app.post('/api/recordsearch',(req,res) => {
